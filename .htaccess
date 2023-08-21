@@ -1,0 +1,11 @@
+ 
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d [OR]
+RewriteCond %{REQUEST_URI} ^/$
+RewriteRule ^(.*)$ /frontend/$1 [L,QSA]
+
+ErrorDocument 404 404.php
+
+php_flag display_errors 1

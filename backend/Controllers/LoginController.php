@@ -37,4 +37,11 @@ class LoginController extends Controller
         $this->errors[] = $model->getErrors()[0];
         return false;
     }
+    public function logout()
+    {
+        session('UserID', null);
+        session('UserType', null);
+        session_regenerate_id(true);
+        $this->response->redirect('/');
+    }
 }

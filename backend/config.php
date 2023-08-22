@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * This is database name as from your PHPMyAdmin :)
+ */
+define('DB_NAME','hostels_management');
+
+/**
  * The database type we're using
  * Examples are mysql and sqlite
  */

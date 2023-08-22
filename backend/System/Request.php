@@ -3,12 +3,12 @@ class Request
 {
     public function isGet()
     {
-        return isset($_GET);
+        return $this->getServer('REQUEST_METHOD')=="GET";
     }
 
     public function isPost()
     {
-        return isset($_POST);
+        return $this->getServer('REQUEST_METHOD')=="POST";
     }
 
     public function get($key)

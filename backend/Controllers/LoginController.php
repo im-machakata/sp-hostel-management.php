@@ -8,8 +8,15 @@ class LoginController extends Controller
     {
         // if the user id is found
         // user is logged in
-        if (session('UserID')) {
+        if (session('UserID') && $this->request->isFile('/login.php')) {
             $this->response->redirect('/');
+            return;
+        }
+
+        if ($this->request->isFile('/logout.php')) {
+            $this->logout();
+            $this->response->redirect('/');
+            return;
         }
 
         // if request method is post

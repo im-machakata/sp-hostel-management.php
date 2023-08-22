@@ -1,4 +1,9 @@
 <?php
+
+/**
+ * The database type we're using
+ * Examples are mysql and sqlite
+ */
 define('DB_TYPE', 'mysql');
 
 /**
@@ -15,3 +20,8 @@ define('DB_USER', 'root');
  * Database password
  */
 define('DB_PASS', '');
+
+/**
+ * The school we are managing the hostels for
+ */
+define('SCHOOL_NAME', 'ABC University');

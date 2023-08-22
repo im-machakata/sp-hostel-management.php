@@ -32,7 +32,7 @@ $controller = new LoginController();
             <?php endif; ?>
 
             <!-- Login Form -->
-            <div class="col-10 col-lg-6 my-2 border p-3 p-lg-4">
+            <div class="col-10 col-lg-6 my-2 border border-success p-3 p-lg-4">
                 <form action="/login.php" method="post">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>

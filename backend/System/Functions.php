@@ -7,9 +7,9 @@
  * @param mixed $value
  * @return void|mixed
  */
-function session($key = null, $value = null)
+function session($key, $value = '')
 {
-    if (!$value) {
+    if ($value === '') {
         return $_SESSION[$key] ?? null;
     }
     $_SESSION[$key] = $value;

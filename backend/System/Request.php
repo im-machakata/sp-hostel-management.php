@@ -3,12 +3,12 @@ class Request
 {
     public function isGet()
     {
-        return $this->getServer('REQUEST_METHOD')=="GET";
+        return $this->getServer('REQUEST_METHOD') == "GET";
     }
 
     public function isPost()
     {
-        return $this->getServer('REQUEST_METHOD')=="POST";
+        return $this->getServer('REQUEST_METHOD') == "POST";
     }
 
     public function get($key)
@@ -34,5 +34,13 @@ class Request
     public function getHeaders($name)
     {
         return get_headers($this->getServer('host'), true)[$name] ?? null;
+    }
+    public function isUrl($url)
+    {
+        return $this->getServer('REQUEST_URI') == $url;
+    }
+    public function isFile($url)
+    {
+        return $this->getServer('PHP_SELF') == $url;
     }
 }

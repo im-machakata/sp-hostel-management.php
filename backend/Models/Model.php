@@ -20,7 +20,7 @@
         public function find($id)
         {
             $this->db->prepare(
-                sprintf('Select * FROM %s WHERE %s = ":id" LIMIT 0,1', $this->table, $this->primaryId),
+                sprintf("SELECT * FROM %s WHERE %s = :id LIMIT 0,1", $this->table, $this->primaryId),
                 ['id' => $id]
             );
             $this->db->exec();

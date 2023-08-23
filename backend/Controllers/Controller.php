@@ -1,8 +1,8 @@
 <?php
 include_once __DIR__ . '/../config.php';
-include __DIR__ . '/../System/Functions.php';
-include __DIR__ . '/../System/Request.php';
-include __DIR__ . '/../System/Response.php';
+include_once __DIR__ . '/../System/Functions.php';
+include_once __DIR__ . '/../System/Request.php';
+include_once __DIR__ . '/../System/Response.php';
 
 class Controller
 {

@@ -3,10 +3,8 @@ include 'Controller.php';
 
 class HomeController extends Controller
 {
-    public function __construct()
+    protected function initialize()
     {
-        parent::__construct();
-
         // if the user id is not specified
         // send the user to a login page
         // else execution will proceed
@@ -17,6 +15,6 @@ class HomeController extends Controller
 
     public function isAdmin()
     {
-        return session('isAdmin');
+        return session('UserType') == 'Admin';
     }
 }

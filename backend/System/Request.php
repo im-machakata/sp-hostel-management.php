@@ -35,12 +35,12 @@ class Request
     {
         return get_headers($this->getServer('host'), true)[$name] ?? null;
     }
-    public function isUrl($url)
+    public static function isUrl($url)
     {
-        return $this->getServer('REQUEST_URI') == $url;
+        return $_SERVER['REQUEST_URI'] == $url;
     }
-    public function isFile($url)
+    public static function isFile($url)
     {
-        return $this->getServer('PHP_SELF') == $url;
+        return $_SERVER['PHP_SELF'] == '/frontend' . $url;
     }
 }

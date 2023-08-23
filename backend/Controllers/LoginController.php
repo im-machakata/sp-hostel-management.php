@@ -1,5 +1,6 @@
 <?php
 include_once 'Controller.php';
+include_once __DIR__ . '/../System/Request.php';
 include_once __DIR__ . '/../Models/Users.php';
 
 class LoginController extends Controller
@@ -8,12 +9,12 @@ class LoginController extends Controller
     {
         // if the user id is found
         // user is logged in
-        if (session('UserID') && $this->request->isFile('/login.php')) {
+        if (session('UserID') && Request::isFile('/login.php')) {
             $this->response->redirect('/');
             return;
         }
 
-        if ($this->request->isFile('/logout.php')) {
+        if (Request::isFile('/logout.php')) {
             $this->logout();
             $this->response->redirect('/');
             return;

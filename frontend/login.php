@@ -40,7 +40,7 @@ $controller = new LoginController();
                     </div>
                     <div class="mb-4">
                         <label for="password" class="form-label">Password</label>
-                        <input type="text" class="form-control rounded-0" placeholder="Password" id="password" name="password" required>
+                        <input type="password" class="form-control rounded-0" placeholder="Password" id="password" name="password" required>
                     </div>
                     <button type="submit" class="btn btn-success rounded-0 btn-lg w-100">Login</button>
                     <p class="mt-4 mb-1 text-lg-center">Don't have an account? <a href="/create-account.php">Create one</a> for free.</p>

@@ -1,4 +1,5 @@
 <?php
+include_once __DIR__ . '/../config.php';
 include __DIR__ . '/../System/Functions.php';
 include __DIR__ . '/../System/Request.php';
 include __DIR__ . '/../System/Response.php';
@@ -38,7 +39,9 @@ class Controller
      * Function is called when the controller is initialized.
      * You can put your init code here instead of using the constructor
      */
-    protected function initialize() {}
+    protected function initialize()
+    {
+    }
 
     /**
      * Returns true if there are any errors

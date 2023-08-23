@@ -8,6 +8,7 @@
         protected $table;
         protected $primaryId = 'id';
         protected array $errors = [];
+        public $pagination = 1;
 
         public function __construct()
         {
@@ -25,6 +26,13 @@
             );
             $this->db->exec();
             return $this;
+        }
+        public function findAll()
+        {
+            $this->db->query(
+                sprintf('SELECT * FROM %s LIMIT 0,10 OFFSET %s ', $this->table, $this->pagination * 10)
+            );
+            return $this->getResults();
         }
         public function getRow()
         {

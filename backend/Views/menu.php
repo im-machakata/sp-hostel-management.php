@@ -9,12 +9,11 @@
                 <li class="nav-item">
                     <a class="nav-link<?= url_active('/') ?>" aria-current="page" href="/">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link<?= url_active('') ?>" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link<?= url_active('') ?>" href="#">Pricing</a>
-                </li>
+                <?php if (session('UserID')) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link<?= url_active('/profile.php') ?>" href="/profile.php">My Account</a>
+                    </li>
+                <?php endif; ?>
                 <?php if (session('UserID')) : ?>
                     <li class="nav-item">
                         <a class="nav-link<?= url_active('/logout.php') ?>" href="/logout.php">Logout</a>

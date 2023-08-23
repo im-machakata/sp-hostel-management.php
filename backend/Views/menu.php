@@ -11,7 +11,7 @@
                 </li>
                 <?php if (session('UserID')) : ?>
                     <li class="nav-item">
-                        <a class="nav-link<?= url_active('/profile.php') ?>" href="/profile.php">My Account</a>
+                        <a class="nav-link<?= url_active('/my-account.php') ?>" href="/my-account.php">My Account</a>
                     </li>
                 <?php endif; ?>
                 <?php if (session('UserID')) : ?>

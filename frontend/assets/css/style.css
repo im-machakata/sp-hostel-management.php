@@ -1,0 +1,11 @@
+.card {
+    margin: 8px auto;
+}
+
+.btn {
+    border-radius: 6px !important;
+}
+
+.form-control, .rounded, .card {
+    border-radius: 8px !important;
+}

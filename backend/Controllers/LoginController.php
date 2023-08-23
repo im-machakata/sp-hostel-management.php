@@ -38,7 +38,9 @@ class LoginController extends Controller
         $model = new Users();
 
         if ($model->login($username, $password)) {
-            session('UserID', $this->request->getVar('username'));
+            $user = $model->findWhere(['username' => $username])->getRow();
+            session('UserID', $user['id']);
+            session('UserType', $user['is_admin'] ? 'Admin' : 'Student');
             return true;
         }
         $this->errors[] = $model->getErrors()[0];

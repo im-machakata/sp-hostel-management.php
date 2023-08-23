@@ -94,9 +94,13 @@ class Database
      */
     public function prepare($query, $values = [])
     {
-        $this->statement = $this->database->prepare($query);
-        if ($values) {
-            $this->bindValues($values);
+        try {
+            $this->statement = $this->database->prepare($query);
+            if ($values) {
+                $this->bindValues($values);
+            }
+        } catch (PDOException $e) {
+            $this->log[] = $e->getMessage();
         }
         return $this;
     }
@@ -125,8 +129,7 @@ class Database
      */
     public function execute()
     {
-        $this->statement->execute();
-        return $this;
+        return $this->exec();
     }
 
     /**
@@ -134,7 +137,12 @@ class Database
      */
     public function exec()
     {
-        $this->statement->execute();
+        try {
+            return $this->statement->execute();
+        } catch (PDOException $e) {
+            $this->log[] = $e->getMessage();
+        }
+        return false;
     }
 
     /**

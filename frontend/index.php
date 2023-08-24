@@ -18,8 +18,8 @@ render_component('head', ['title' => 'Home']);
         <section class="row justify-content-center">
             <div class="col-lg-6 mb-3 mb-lg-4">
                 <div class="progress rounded">
-                    <div class="progress-bar bg-success progress-bar-striped" role="progressbar" style="width: <?= $percentage_free ?>%" aria-valuenow="<?= $percentage_free ?>" aria-valuemin="0" aria-valuemax="100" data-bs-toggle="tooltip" data-bs-placement="left" title="Free Rooms"><?= $percentage_free ?>% Free</div>
-                    <div class="progress-bar bg-warning progress-bar-striped text-dark" role="progressbar" style="width: <?= (100 - $percentage_free) ?>%" aria-valuenow="<?= (100 - $percentage_free) ?>" aria-valuemin="0" aria-valuemax="100" data-bs-toggle="tooltip" data-bs-placement="right" title="Booked Rooms"><?= 100-$percentage_free ?>% Booked</div>
+                    <div class="progress-bar bg-success progress-bar-striped" role="progressbar" style="width: <?= $percentage_free ?>%" aria-valuenow="<?= $percentage_free ?>" aria-valuemin="0" aria-valuemax="100" data-bs-toggle="tooltip" data-bs-placement="left" title="Free Rooms"><?= count($available_rooms) ?> Rooms Available</div>
+                    <div class="progress-bar bg-warning progress-bar-striped text-dark" role="progressbar" style="width: <?= (100 - $percentage_free) ?>%" aria-valuenow="<?= (100 - $percentage_free) ?>" aria-valuemin="0" aria-valuemax="100" data-bs-toggle="tooltip" data-bs-placement="right" title="Booked Rooms"><?= $all_rooms - count($available_rooms) ?> Rooms Reserved</div>
                 </div>
             </div>
             <div class="col-12"></div>

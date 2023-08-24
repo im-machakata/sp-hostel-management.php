@@ -1,3 +1,23 @@
+::-webkit-scrollbar {
+    width: .4em;
+    height: .4em;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #a0a0a0;
+    border-radius: 2px;
+    height: 0;
+    width: .25em;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    transition: ease .4s
+}
+
+html {
+    scroll-behavior: auto;
+}
+
 .card {
     margin: 8px auto;
 }

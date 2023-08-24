@@ -6,6 +6,7 @@
     {
         protected $db;
         protected $table;
+        protected $columns = [];
         protected $primaryId = 'id';
         protected array $errors = [];
         public $pagination = 1;
@@ -47,20 +48,35 @@
         {
             $keys_index = 0;
             $cols = $vals = [];
+            $data_copy = $data;
+            if (isset($data[$this->primaryId])) :
+                unset($data_copy[$this->primaryId]);
+            endif;
+            $last_col = array_key_last($data_copy);
+
             foreach ($data as $col => $value) {
                 $keys_index++;
-                if ($col == $this->primaryId) continue;
-                $last_col = $keys_index == count($data);
-                $cols[] = sprintf("`%s%s`", $col, $last_col ? '' : ', ');
-                $vals[] = sprintf(":%s%s", $value, $last_col ? '' : ', ');
+                if ($col == $this->primaryId || !$value) continue;
+                if (!array_key_exists($this->primaryId, $data)) :
+                    $cols[] = sprintf("`%s%s`", $col, $last_col == $col ? '' : ', ');
+                    $vals[] = sprintf(":%s%s", $value, $last_col == $col ? '' : ', ');
+                    continue;
+                endif;
+
+                if ($this->columns && !in_array($col, $this->columns)) continue;
+                $cols[] = " $col = :$col" . ($last_col == $col ? '' : ', ');
             }
 
-            // we are updatin the table
+            // hash password if necessary
+            if ($data['password']) $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+            // check if we are updating the table
             if (array_key_exists($this->primaryId, $data)) {
-                $this->db->prepare(sprintf('UPDATE %s SET %s WHERE %s = :id', $this->table, implode('', $cols), $this->primaryId), $vals);
+                $this->db->prepare(sprintf('UPDATE %s SET %s WHERE %s = :id', $this->table, implode('', $cols), $this->primaryId), $data);
             } else {
-                $this->db->prepare(sprintf('INSERT INTO %s (%s) VALUES(%s)', $this->table, implode('', $cols), $this->primaryId), $vals);
+                $this->db->prepare(sprintf('INSERT INTO %s (%s) VALUES(%s)', $this->table, implode('', $cols)), $vals);
             }
+            $this->db->exec();
         }
         public function findWhere($conditions = [])
         {

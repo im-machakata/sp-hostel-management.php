@@ -37,6 +37,7 @@ html {
 .form-control:hover,
 .form-control:focus,
 .form-control:active,
+.navbar-toggler,
 .navbar-toggler:focus {
     outline: none;
     box-shadow: none;

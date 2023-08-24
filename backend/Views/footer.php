@@ -4,3 +4,4 @@
     </div>
 </footer>
 <script src="/assets/js/bootstrap.bundle.min.js" defer></script>
+<script src="/assets/js/script.js" defer></script>

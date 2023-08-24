@@ -28,6 +28,15 @@ class AccountController extends Controller
         $username = $this->request->getVar('student-id');
         $password = $this->request->getVar('password');
         $model = new Users();
+
+        // check if username is available
+        $user = $model->findWhere(['username' => $username])->getRow();
+        if ($user && $user['id'] !== session('UserID')) {
+            $this->errors[] = 'Username is not available.';
+            return false;
+        }
+
+        // update profile if all is well
         $model->save([
             'username' => $username,
             'password' => $password,

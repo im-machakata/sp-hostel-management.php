@@ -25,4 +25,9 @@ class Rooms extends Model
     {
         return $this->findWhere(['is_booked' => '1'])->getResults();
     }
+    public function countAllRooms()
+    {
+        $this->db->query(sprintf('SELECT COUNT(id) AS total FROM %s', $this->table));
+        return $this->db->getRow();
+    }
 }

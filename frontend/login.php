@@ -26,11 +26,11 @@ render_component('head', ['title' => 'Login']);
             <div class="col-10 col-lg-6 my-2 border border-success rounded p-3 p-lg-4 mb-4">
                 <form action="/login.php" method="post">
                     <div class="mb-3 form-floating">
-                        <input type="text" class="form-control" placeholder="Username" id="username" name="username" required>
+                        <input type="text" class="form-control" placeholder="Username" id="username" name="username" value="<?= $controller->request->getVar('username') ?>" required>
                         <label for="username" class="form-label">Username</label>
                     </div>
                     <div class="mb-4 form-floating">
-                        <input type="password" class="form-control" placeholder="Password" id="password" name="password" required>
+                        <input type="password" class="form-control" placeholder="Password" id="password" name="password" value="<?= $controller->request->getVar('password') ?>" required>
                         <label for="password" class="form-label">Password</label>
                     </div>
                     <button type="submit" class="btn btn-success btn-lg w-100">Login</button>

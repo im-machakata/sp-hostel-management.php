@@ -15,7 +15,7 @@ render_component('head', ['title' => 'Register']); ?>
             <!-- Errors Layouts -->
             <?php if ($controller->hasErrors()) : ?>
                 <div class="col-10 col-lg-6 px-0">
-                    <div class="alert alert-danger"><?= $controller->getLastError() ?></div>
+                    <div class="alert alert-danger border-danger"><?= $controller->getLastError() ?></div>
                 </div>
                 <div class="col-12"></div>
             <?php endif; ?>

@@ -41,7 +41,6 @@ render_component('head', ['title' => 'Login']);
     </main>
 
     <?php render_component('footer'); ?>
-    <script src="/assets/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

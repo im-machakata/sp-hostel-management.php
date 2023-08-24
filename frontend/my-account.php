@@ -17,8 +17,15 @@ render_component('head', ['title' => 'My Profile']); ?>
 
             <!-- Errors Layouts -->
             <?php if ($controller->hasErrors()) : ?>
-                <div class="col-10 col-lg-6 px-0">
-                    <div class="alert alert-danger"><?= $controller->getLastError() ?></div>
+                <div class="col-11 col-lg-6 px-0">
+                    <div class="alert alert-danger border-danger"><?= $controller->getLastError() ?></div>
+                </div>
+                <div class="col-12"></div>
+            <?php endif; ?>
+            <!-- Success Layout -->
+            <?php if ($controller->request->isPost() && !$controller->hasErrors()) : ?>
+                <div class="col-11 col-lg-6 px-0">
+                    <div class="alert alert-success border border-success">Your account has been updated.</div>
                 </div>
                 <div class="col-12"></div>
             <?php endif; ?>

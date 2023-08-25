@@ -3,12 +3,12 @@ class Request
 {
     public function isGet()
     {
-        return $this->getServer('REQUEST_METHOD') == "GET";
+        return self::getServer('REQUEST_METHOD') == "GET";
     }
 
     public function isPost()
     {
-        return $this->getServer('REQUEST_METHOD') == "POST";
+        return self::getServer('REQUEST_METHOD') == "POST";
     }
 
     public function get($key)
@@ -26,14 +26,14 @@ class Request
         return $_REQUEST[$key] ?? null;
     }
 
-    public function getServer($name)
+    public static function getServer($name)
     {
         return $_SERVER[strtoupper($name)] ?? null;
     }
 
     public function getHeaders($name)
     {
-        return get_headers($this->getServer('host'), true)[$name] ?? null;
+        return get_headers(self::getServer('host'), true)[$name] ?? null;
     }
     public static function isUrl($url)
     {

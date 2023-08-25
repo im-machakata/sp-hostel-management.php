@@ -15,10 +15,20 @@ function session($key, $value = '')
     $_SESSION[$key] = $value;
 }
 
-function render_component($name,$data = [])
+/**
+ * Use component files in your ui.
+ *
+ * @param string $__name__ component name
+ * @param array $__data__ component data
+ * @return void
+ */
+function render_component($__name__, $__data__ = [])
 {
-    extract($data);
-    require_once __DIR__ . '/../Views/' . $name . '.php';
+    extract($__data__);
+    $__FILE__ =    __DIR__ . '/../Views/' . $__name__ . '.php';
+    if (file_exists($__FILE__)) {
+        require $__FILE__;
+    }
 }
 
 

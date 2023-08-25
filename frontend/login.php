@@ -8,11 +8,14 @@ render_component('head', ['title' => 'Login']);
 
 <body>
     <main class="container-fluid">
-        <?php render_component('header', ['page' => 'Login']); ?>
         <section class="login row justify-content-center">
+            <!-- Header -->
+            <div class="col-11 col-lg-12 text-lg-center">
+                <?php render_component('header', ['page' => 'Login']); ?>
+            </div>
             <!-- Errors Layouts -->
             <?php if ($controller->hasErrors()) : ?>
-                <div class="col-10 col-lg-6 px-0">
+                <div class="col-11 col-lg-6 px-0">
                     <div class="alert alert-danger border-danger"><?= $controller->getLastError() ?></div>
                 </div>
                 <div class="col-12"></div>

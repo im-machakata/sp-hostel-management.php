@@ -55,6 +55,13 @@ render_component('head', ['title' => 'Book Room']);
                                 </div>
                             </div>
                             <div class="col-12"></div>
+                        <?php if (!$controller->hasErrors() && $controller->request->isPost()) : ?>
+                            <div class="col-11 col-lg-12 px-0">
+                                <div class="alert alert-success text-lg-center mt-1 mb-4">
+                                    Payment instructions have been sent to your email.
+                                </div>
+                            </div>
+                            <div class="col-12"></div>
                         <?php endif; ?>
                         <div class="col-md-5 col-lg-4 order-md-last">
                             <h4 class="text-dark mb-3">

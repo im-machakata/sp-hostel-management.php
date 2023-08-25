@@ -44,7 +44,7 @@ render_component('head', ['title' => 'Book Room']);
                 <section class="ratio ratio-16x9 room-image border-top border-success input-fix" style="max-height: 50vh;background: url(<?= $room['image_url'] ?? '/assets/images/demo.jpg' ?>) no-repeat; background-size: cover; background-position: center;"></section>
             <?php endif; ?>
             <div class="container-fluid">
-                <section class="container">
+                <section class="px-0 container-lg">
                     <?php render_component('header', ['page' => 'Book']); ?>
                     <div class="row justify-content-center mt-2">
                         <!-- Errors Layouts -->
@@ -55,7 +55,8 @@ render_component('head', ['title' => 'Book Room']);
                                 </div>
                             </div>
                             <div class="col-12"></div>
-                        <?php if (!$controller->hasErrors() && $controller->request->isPost()) : ?>
+                        <?php endif;
+                        if (!$controller->hasErrors() && $controller->request->isPost()) : ?>
                             <div class="col-11 col-lg-12 px-0">
                                 <div class="alert alert-success text-lg-center mt-1 mb-4">
                                     Payment instructions have been sent to your email.

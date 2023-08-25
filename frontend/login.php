@@ -8,12 +8,8 @@ render_component('head', ['title' => 'Login']);
 
 <body>
     <main class="container-fluid">
-        <section class="login row jumbotron justify-content-center">
-            <!-- Header -->
-            <div class="col-11 col-lg-12 text-lg-center">
-                <?php render_component('header', ['page' => 'Login']); ?>
-            </div>
-
+        <?php render_component('header', ['page' => 'Login']); ?>
+        <section class="login row justify-content-center">
             <!-- Errors Layouts -->
             <?php if ($controller->hasErrors()) : ?>
                 <div class="col-10 col-lg-6 px-0">
@@ -23,7 +19,7 @@ render_component('head', ['title' => 'Login']);
             <?php endif; ?>
 
             <!-- Login Form -->
-            <div class="col-10 col-lg-6 my-2 border border-success rounded p-3 p-lg-4 mb-4">
+            <div class="col-11 col-lg-6 my-2 border border-success rounded py-3 p-lg-4 mb-4">
                 <form action="/login.php" method="post">
                     <div class="mb-3 form-floating">
                         <input type="text" class="form-control" placeholder="Username" id="username" name="username" value="<?= $controller->request->getVar('username') ?>" required>

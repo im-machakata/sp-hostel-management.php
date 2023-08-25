@@ -8,6 +8,10 @@
         </div>
         <h2 class="card-title"><?= $name ?></h2>
         <p class="card-text"><?= $description ?></p>
-        <a href="/book-room.php?id=<?= $id ?>" class="btn btn-outline-success">Book This Room</a>
+        <?php if ($is_booked) : ?>
+            <a href="/book-room.php?id=<?= $id ?>" class="btn btn-success disabled">Room Is Booked</a>
+        <?php else : ?>
+            <a href="/book-room.php?id=<?= $id ?>" class="btn btn-outline-success">Book This Room</a>
+        <?php endif; ?>
     </div>
 </div>

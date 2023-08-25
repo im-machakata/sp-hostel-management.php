@@ -76,7 +76,7 @@
             } else {
                 $this->db->prepare(sprintf('INSERT INTO %s (%s) VALUES(%s)', $this->table, implode('', $cols)), $vals);
             }
-            $this->db->exec();
+            return $this->db->exec();
         }
         public function findWhere($conditions = [])
         {

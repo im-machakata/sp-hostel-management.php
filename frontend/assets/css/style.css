@@ -45,10 +45,10 @@ html {
     transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s;
 }
 
-.ratio {
+.ratio.input-fix {
     position: static;
 }
 
-.ratio::before {
+.ratio.input-fix::before {
     z-index: 0;
 }

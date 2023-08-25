@@ -31,7 +31,7 @@
         public function findAll()
         {
             $this->db->query(
-                sprintf('SELECT * FROM %s LIMIT 0,10 OFFSET %s ', $this->table, $this->pagination * 10)
+                sprintf('SELECT * FROM %s LIMIT 0,10 ', $this->table, $this->pagination * 10)
             );
             return $this->getResults();
         }

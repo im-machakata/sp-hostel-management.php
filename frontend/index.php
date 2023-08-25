@@ -25,19 +25,7 @@ render_component('head', ['title' => 'Home']);
             <div class="col-12"></div>
             <?php foreach ($available_rooms as $room) : ?>
                 <div class="col-sm-6 col-lg-3">
-                    <div class="card border-success">
-                        <div class="ratio ratio-16x9">
-                            <img src="<?= $room['image_url'] ?? ('/assets/images/demo.jpg') ?>" class="card-img-top img-fluid" alt="<?= $room['name'] ?> Image">
-                        </div>
-                        <div class="card-body">
-                            <div class="text-dark h5 badge bg-warning mb-2">
-                                USD $<?= number_format($room['cost'], 2) ?>
-                            </div>
-                            <h2 class="card-title"><?= $room['name'] ?></h2>
-                            <p class="card-text"><?= $room['description'] ?></p>
-                            <a href="/book-room.php?id=<?= $room['id'] ?>" class="btn btn-outline-success">Book This Room</a>
-                        </div>
-                    </div>
+                    <?php render_component('room', $room); ?>
                 </div>
             <?php endforeach; ?>
         </section>

@@ -14,7 +14,7 @@
                         <a class="nav-link<?= url_active('/booked-rooms.php') ?>" href="/booked-rooms.php">View Bookings</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link<?= url_active('/booked-rooms.php') ?>" href="/booked-rooms.php">Manage Rooms</a>
+                        <a class="nav-link<?= url_active('/manage-rooms.php') ?>" href="/manage-rooms.php">Manage Rooms</a>
                     </li>
                 <?php endif; ?>
                 <?php if (session('UserID')) : ?>

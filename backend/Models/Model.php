@@ -58,8 +58,8 @@
                 $keys_index++;
                 if ($col == $this->primaryId || !$value) continue;
                 if (!array_key_exists($this->primaryId, $data)) :
-                    $cols[] = sprintf("`%s%s`", $col, $last_col == $col ? '' : ', ');
-                    $vals[] = sprintf(":%s%s", $value, $last_col == $col ? '' : ', ');
+                    $cols[] = sprintf("`%s`%s", $col, $last_col == $col ? '' : ', ');
+                    $vals[] = sprintf(":%s%s", $col, $last_col == $col ? '' : ', ');
                     continue;
                 endif;
 
@@ -68,13 +68,13 @@
             }
 
             // hash password if necessary
-            if ($data['password']) $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+            if (isset($data['password']) && $data['password']) $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
             // check if we are updating the table
             if (array_key_exists($this->primaryId, $data)) {
                 $this->db->prepare(sprintf('UPDATE %s SET %s WHERE %s = :id', $this->table, implode('', $cols), $this->primaryId), $data);
             } else {
-                $this->db->prepare(sprintf('INSERT INTO %s (%s) VALUES(%s)', $this->table, implode('', $cols)), $vals);
+                $this->db->prepare(sprintf('INSERT INTO %s (%s) VALUES(%s)', $this->table, implode('', $cols), implode('', $vals)), $data);
             }
             return $this->db->exec();
         }

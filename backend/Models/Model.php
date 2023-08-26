@@ -56,7 +56,7 @@
 
             foreach ($data as $col => $value) {
                 $keys_index++;
-                if ($col == $this->primaryId || !$value) continue;
+                if ($col == $this->primaryId || $value === false) continue;
                 if (!array_key_exists($this->primaryId, $data)) :
                     $cols[] = sprintf("`%s`%s", $col, $last_col == $col ? '' : ', ');
                     $vals[] = sprintf(":%s%s", $col, $last_col == $col ? '' : ', ');

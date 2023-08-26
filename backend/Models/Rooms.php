@@ -25,6 +25,11 @@ class Rooms extends Model
     {
         return $this->findWhere(['is_booked' => '1'])->getResults();
     }
+    public function deleteRoom($id)
+    {
+        $this->db->prepare(sprintf('DELETE FROM %s WHERE id = :id', $this->table), ['id' => $id]);
+        return $this->db->exec();
+    }
     public function countAllRooms()
     {
         $this->db->query(sprintf('SELECT COUNT(id) AS total FROM %s', $this->table));

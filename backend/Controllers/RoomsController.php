@@ -24,6 +24,12 @@ class RoomsController extends Controller
         if (Request::isFile('/book-room.php') && $this->request->isPost()) {
             $this->bookRoom();
         }
+
+        if (Request::isFile('/manage-rooms.php') && $this->request->isPost()) {
+            if (in_array($this->request->getVar('action'), ['new', 'edit'])) {
+                $this->createRoom();
+            }
+        }
     }
     public function bookRoom()
     {
@@ -47,6 +53,62 @@ class RoomsController extends Controller
             $this->errors[] = '<strong>Failed: </strong>Please make sure your server is connected and setup to send emails.';
             return;
         }
+    }
+
+    private function createRoom()
+    {
+        $name = $this->request->getVar('roomName');
+        $price = $this->request->getVar('roomPrice');
+        $details = $this->request->getVar('roomDescription');
+        $file = $_FILES['roomImage'];
+        $newFileName = false;
+
+        if ($file['error'] != UPLOAD_ERR_NO_FILE) {
+
+            // check if file is a valid image
+            if (!getimagesize($file['tmp_name'])) {
+                $this->errors[] = 'Please upload a valid image file.';
+                return;
+            }
+
+            // move file to assets
+            $targetDir = __DIR__ . '/../../frontend/assets/images/';
+            $newFileName = 'ROOM-'.uniqid(time()) . '-' . $file['name'];
+            $targetFile = $targetDir . $newFileName;
+
+            if (!move_uploaded_file($file['tmp_name'], $targetFile)) {
+                $this->errors[] = 'There was an error uploading your image.';
+                return;
+            }
+        }
+
+        if ($name && $price && $details) {
+            $rooms = new Rooms();
+            $data = [
+                'name' => $name,
+                'cost' => $price,
+                'description' => $details,
+            ];
+
+            // check for duplicates if new entry
+            if ($this->request->getVar('action') != 'edit') {
+                $exists = $rooms->findWhere($data)->getRow();
+                if ($exists) {
+                    $this->errors[] = 'Room already exists with the same details.';
+                    return;
+                }
+            }
+
+            if ($this->request->getVar('action') == 'edit') $data['id'] = $this->request->getVar('id');
+            if ($newFileName) $data['image_url'] = '/assets/images/' . $newFileName;
+            $saved = $rooms->save($data);
+            if (!$saved) $this->errors[] = $rooms->getFirstError();
+            return $saved;
+        }
+
+        // we will only get here if some fields are missing
+        $this->errors[] = 'Some fields are missing or empty.';
+        return false;
     }
     private function hashId(int $id)
     {

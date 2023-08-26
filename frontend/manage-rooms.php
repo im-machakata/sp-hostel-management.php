@@ -42,9 +42,9 @@ render_component('head', ['title' => 'Manage Rooms']);
                                         <input type="file" class="form-control" placeholder="Room Image" id="roomImage" name="roomImage">
                                     </div>
                                     <div class="mb-3 form-check">
-                                        <input class="form-check-input" type="checkbox" value="1" id="roomAvailable" name="roomAvailable" checked>
-                                        <label class="form-check-label" for="roomAvailable">
-                                            The room is available for booking
+                                        <input class="form-check-input" type="checkbox" value="1" id="roomBooked" name="roomBooked">
+                                        <label class="form-check-label" for="roomBooked">
+                                            The room is already booked
                                         </label>
                                     </div>
                                     <div class="mb-3 form-floating">

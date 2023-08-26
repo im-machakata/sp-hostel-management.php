@@ -45,6 +45,6 @@ window.onload = function () {
         document.getElementById('roomPrice').value = '';
         document.getElementById('roomDescription').value = '';
         document.getElementById('formAction').value = '';
-        document.getElementById('roomAvailable').checked = true;
+        document.getElementById('roomAvailable').checked = false;
     });
 };

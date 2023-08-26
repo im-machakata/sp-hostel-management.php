@@ -29,6 +29,9 @@ class RoomsController extends Controller
             if (in_array($this->request->getVar('action'), ['new', 'edit'])) {
                 $this->createRoom();
             }
+            if (in_array($this->request->getVar('action'), ['delete'])) {
+                $this->deleteRoom();
+            }
         }
     }
     public function bookRoom()
@@ -73,7 +76,7 @@ class RoomsController extends Controller
 
             // move file to assets
             $targetDir = __DIR__ . '/../../frontend/assets/images/';
-            $newFileName = 'ROOM-'.uniqid(time()) . '-' . $file['name'];
+            $newFileName = 'ROOM-' . uniqid(time()) . '-' . $file['name'];
             $targetFile = $targetDir . $newFileName;
 
             if (!move_uploaded_file($file['tmp_name'], $targetFile)) {
@@ -109,6 +112,27 @@ class RoomsController extends Controller
         // we will only get here if some fields are missing
         $this->errors[] = 'Some fields are missing or empty.';
         return false;
+    }
+    private function deleteRoom()
+    {
+        $id = $this->request->getVar('id');
+
+        if (!$id) {
+            $this->errors[] = 'Room id can not be null.';
+            return;
+        }
+
+        $roomModel = new Rooms();
+        $room = $roomModel->find($id)->getRow();
+        if (!$room) {
+            $this->errors[] = 'Room could not be found';
+            return;
+        }
+
+        if (!$roomModel->deleteRoom($id)) {
+            $this->errors[] = $roomModel->getLastError();
+            return;
+        }
     }
     private function hashId(int $id)
     {

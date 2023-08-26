@@ -1,4 +1,7 @@
 window.onload = function () {
+    // prevent form resubmition on refresh
+    window.history.pushState({},'','');
+
     // loop through all tooltip selectors and activate them
     const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
     const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
@@ -30,5 +33,5 @@ window.onload = function () {
         document.getElementById('roomPrice').value = '';
         document.getElementById('roomDescription').value = '';
         document.getElementById('formAction').value = '';
-    })
+    });
 }

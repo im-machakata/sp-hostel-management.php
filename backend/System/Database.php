@@ -123,17 +123,17 @@ class Database
     /**
      * Executes an sql transaction
      */
-    public function execute()
+    public function execute($sql = null)
     {
-        return $this->exec();
+        return $this->exec($sql = null);
     }
 
     /**
      * Executes a transaction
      */
-    public function exec()
+    public function exec($sql = null)
     {
-        return $this->statement->execute();
+        return $this->statement->execute($sql = null);
     }
 
     /**

@@ -1,3 +1,4 @@
 {
-    "php.format.codeStyle": "Laravel"
+    "php.format.codeStyle": "Laravel",
+    "editor.wordWrap": "on"
 }

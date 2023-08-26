@@ -31,6 +31,10 @@ class Controller
         $this->request = new Request();
         $this->response = new Response();
 
+        // call any global & controller middlewares
+        $this->globalMiddlewares();
+        $this->middlewares();
+
         // call any functions that needs to be run on startup
         $this->initialize();
     }
@@ -40,6 +44,47 @@ class Controller
      * You can put your init code here instead of using the constructor
      */
     protected function initialize()
+    {
+    }
+
+    /**
+     * Define you global system middlewares here. 
+     * These will be called on all controllers
+     *
+     * @return void
+     */
+    protected function globalMiddlewares()
+    {
+        // if user is not logged in
+        // and is not on login or register page
+        // send them to the login page
+        if (!session('UserID')) {
+            $files = ['/frontend/login.php', '/frontend/create-account.php'];
+            if (!in_array(Request::getServer('PHP_SELF'),  $files)) {
+                $this->response->redirect('/login.php');
+                return;
+            }
+        }
+
+        if (session('UserID')) {
+
+            // if the user has logged out
+            // send them to the login page
+            if (Request::isFile('/logout.php')) {
+                $this->response->redirect('/login.php');
+                return;
+            }
+        }
+    }
+
+    /**
+     * Define your controller middlewares.
+     * These will only be called when defined 
+     * on that current controller.
+     *
+     * @return void
+     */
+    protected function middlewares()
     {
     }
 

@@ -6,11 +6,9 @@ class RoomsController extends Controller
 {
     protected function initialize()
     {
-        // if the user id is not specified
-        // send the user to a login page
-        // else execution will proceed
-        if (!session('UserID')) {
-            $this->response->redirect('/login.php');
+        // prevent access to admin pages
+        if ($this->isAdmin() && (Request::isUrl('/booked-rooms.php') || Request::isUrl('/manage-rooms.php'))) {
+            $this->response->redirect('/');
         }
 
         // If user is on the book room page

@@ -3,15 +3,9 @@ include_once 'Model.php';
 class Rooms extends Model
 {
     protected $table = 'rooms';
-    public function book(): bool
-    {
-    }
     public function isBooked($id): bool
     {
         return empty($this->findWhere(['id' => $id, 'is_booked' => '1'])->getRow());
-    }
-    public function free(): bool
-    {
     }
     public function isFree($id): bool
     {
@@ -24,6 +18,12 @@ class Rooms extends Model
     public function getBookedRooms(): array
     {
         return $this->findWhere(['is_booked' => '1'])->getResults();
+    }
+    public function getBookings()
+    {
+        $this->db->prepare(sprintf('SELECT * FROM %s LEFT JOIN %s ON user_id = users.id WHERE is_booked = %s', $this->table, 'users', '1'))->exec();
+        return $this->db->getRows();
+
     }
     public function deleteRoom($id)
     {

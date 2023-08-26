@@ -7,13 +7,6 @@ class AccountController extends Controller
 {
     protected function initialize()
     {
-        // if the user id is found
-        // user is logged in
-        if (!session('UserID')) {
-            $this->response->redirect('/login.php');
-            return;
-        }
-
         // if request method is post
         // and user is not logged in
         // process the credentials

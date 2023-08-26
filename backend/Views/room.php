@@ -8,10 +8,10 @@
                 USD $<?= number_format($cost, 2) ?>
             </div>
             <?php if (session('UserType') == 'Admin' && Request::isUrl('/manage-rooms.php')) : ?>
-                <div class="text-dark h5 badge bg-info mb-2">
+                <div class="text-dark h5 badge bg-info mb-2" data-id="<?= $id ?>">
                     EDIT ROOM
                 </div>
-                <div class="h5 badge bg-danger mb-2 float-end">
+                <div class="h5 badge bg-danger mb-2 float-end" data-id="<?= $id ?>">
                     DELETE
                 </div>
             <?php endif; ?>

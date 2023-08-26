@@ -35,6 +35,7 @@ window.onload = function () {
             document.getElementById('roomName').value = data.name;
             document.getElementById('roomPrice').value = data.cost;
             document.getElementById('roomDescription').value = data.details;
+            document.getElementById('roomBooked').checked = data.booked == '1';
         }
     });
 

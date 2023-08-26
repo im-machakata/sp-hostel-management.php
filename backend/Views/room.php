@@ -19,6 +19,7 @@
                             data-details="<?= $description ?>" 
                             data-cost="<?= $cost ?>" 
                             data-image="<?= $image_url ?>" 
+                            data-booked="<?= $is_booked ?>" 
                             data-action="edit">
                             EDIT
                         </a>

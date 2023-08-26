@@ -80,7 +80,7 @@ render_component('head', ['title' => 'Manage Rooms']);
 
                 <div class="row mt-2">
                     <?php foreach ($rooms as $room) : ?>
-                        <div class="col-lg-4 mb-3">
+                        <div class="col-lg-3 mb-3">
                             <?php render_component('room', $room) ?>
                         </div>
                     <?php endforeach; ?>

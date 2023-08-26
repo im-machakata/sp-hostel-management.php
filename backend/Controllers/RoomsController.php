@@ -63,6 +63,7 @@ class RoomsController extends Controller
         $name = $this->request->getVar('roomName');
         $price = $this->request->getVar('roomPrice');
         $details = $this->request->getVar('roomDescription');
+        $booked = $this->request->getVar('roomBooked');
         $file = $_FILES['roomImage'];
         $newFileName = false;
 
@@ -91,6 +92,7 @@ class RoomsController extends Controller
                 'name' => $name,
                 'cost' => $price,
                 'description' => $details,
+                'is_booked' => $booked == '1' ? '1' : '0'
             ];
 
             // check for duplicates if new entry

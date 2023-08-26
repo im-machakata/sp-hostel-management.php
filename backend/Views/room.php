@@ -8,11 +8,13 @@
                 USD $<?= number_format($cost, 2) ?>
             </div>
             <?php if (session('UserType') == 'Admin' && Request::isUrl('/manage-rooms.php')) : ?>
-                <div class="text-dark h5 badge bg-info mb-2" data-id="<?= $id ?>">
-                    EDIT ROOM
-                </div>
-                <div class="h5 badge bg-danger mb-2 float-end" data-id="<?= $id ?>">
-                    DELETE
+                <div class="float-end">
+                    <a class="text-dark h5 badge bg-info mb-2 text-decoration-none" href="#editRoom" data-bs-toggle="modal" data-bs-target="#newRoom" data-id="<?= $id ?>" data-name="<?= $name ?>" data-details="<?= $description ?>" data-cost="<?= $cost ?>" data-image="<?= $image_url ?>" data-action="edit">
+                        EDIT
+                    </a>
+                    <span class="h5 badge bg-danger alert-link mb-2 text-decoration-none" data-id="<?= $id ?>">
+                        DELETE
+                    </span>
                 </div>
             <?php endif; ?>
         </div>

@@ -41,6 +41,12 @@ render_component('head', ['title' => 'Manage Rooms']);
                                     <div class="mb-3 input-group">
                                         <input type="file" class="form-control" placeholder="Room Image" id="roomImage" name="roomImage">
                                     </div>
+                                    <div class="mb-3 form-check">
+                                        <input class="form-check-input" type="checkbox" value="1" id="roomAvailable" name="roomAvailable" checked>
+                                        <label class="form-check-label" for="roomAvailable">
+                                            The room is available for booking
+                                        </label>
+                                    </div>
                                     <div class="mb-3 form-floating">
                                         <textarea type="text" class="form-control" placeholder="Room Description" id="roomDescription" name="roomDescription" style="height: 100px;" required></textarea>
                                         <label for="roomDescription" class="form-label">Room Description</label>

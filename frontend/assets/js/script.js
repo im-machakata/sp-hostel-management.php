@@ -3,15 +3,15 @@ window.onload = function () {
     window.history.pushState({}, '', '');
 
     // loop through all tooltip selectors and activate them
-    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
     const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl)
+        return new bootstrap.Tooltip(tooltipTriggerEl);
     });
 
     // loop through all delete room buttons and
     // attach a click event listener.
     // once clicked, confirm with the user and prevent default if they're kidding ;)
-    const deleteButtonsList = [].slice.call(document.querySelectorAll('.delete-room'))
+    const deleteButtonsList = [].slice.call(document.querySelectorAll('.delete-room'));
     const deleteList = deleteButtonsList.map(function (item) {
         item.addEventListener('click', function (event) {
             if (!confirm('Are you sure you want to delete this room?')) {
@@ -38,12 +38,13 @@ window.onload = function () {
         }
     });
 
-    // reset values on close modal
-    newRoom.addEventListener('hide.bs.modal', function () {
+    // reset values after the modal has closed
+    newRoom.addEventListener('hidden.bs.modal', function () {
         document.getElementById('roomID').value = '';
         document.getElementById('roomName').value = '';
         document.getElementById('roomPrice').value = '';
         document.getElementById('roomDescription').value = '';
         document.getElementById('formAction').value = '';
+        document.getElementById('roomAvailable').checked = true;
     });
-}
+};

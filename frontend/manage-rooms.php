@@ -61,7 +61,15 @@ render_component('head', ['title' => 'Manage Rooms']);
                 <?php if ($controller->hasErrors() && $controller->request->isPost()) : ?>
                     <div class="alert alert-danger"><?= $controller->getLastError() ?></div>
                 <?php elseif ($controller->request->isPost() && !$controller->hasErrors()) : ?>
-                    <div class="alert alert-success"><?= $controller->request->getVar('action') == 'edit' ? 'Room has been updated.' : 'New room has been captured.' ?></div>
+                    <div class="alert alert-success">
+                        <?php
+                        if ($controller->request->getVar('action') == 'edit') {
+                            echo 'Room has been updated.';
+                        } elseif ($controller->request->getVar('action') == 'delete') {
+                            echo 'Selected room has been deleted.';
+                        } else {
+                            echo 'New room has been captured.';
+                        } ?></div>
                 <?php endif; ?>
 
                 <div class="row mt-2">

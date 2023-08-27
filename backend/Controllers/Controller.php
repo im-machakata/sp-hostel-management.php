@@ -32,10 +32,12 @@ class Controller
         $this->response = new Response();
 
         // call any global & controller middlewares
-        $this->globalMiddlewares();
-        $this->middlewares();
+        if (!$this->globalMiddlewares() || !$this->middlewares()) {
+            return;
+        }
 
         // call any functions that needs to be run on startup
+        // only if the middlewares succeeded
         $this->initialize();
     }
 
@@ -51,7 +53,7 @@ class Controller
      * Define you global system middlewares here. 
      * These will be called on all controllers
      *
-     * @return void
+     * @return bool
      */
     protected function globalMiddlewares()
     {
@@ -62,19 +64,13 @@ class Controller
             $files = ['/frontend/login.php', '/frontend/create-account.php'];
             if (!in_array(Request::getServer('PHP_SELF'),  $files)) {
                 $this->response->redirect('/login.php');
-                return;
+                return false;
             }
         }
 
         if (session('UserID')) {
-
-            // if the user has logged out
-            // send them to the login page
-            if (Request::isFile('/logout.php')) {
-                $this->response->redirect('/login.php');
-                return;
-            }
         }
+        return true;
     }
 
     /**
@@ -82,10 +78,11 @@ class Controller
      * These will only be called when defined 
      * on that current controller.
      *
-     * @return void
+     * @return bool
      */
     protected function middlewares()
     {
+        return true;
     }
 
     /**

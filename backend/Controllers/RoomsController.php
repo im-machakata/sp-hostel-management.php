@@ -7,7 +7,7 @@ class RoomsController extends Controller
     protected function initialize()
     {
         // prevent access to admin pages
-        if ($this->isAdmin() && (Request::isUrl('/booked-rooms.php') || Request::isUrl('/manage-rooms.php'))) {
+        if (!$this->isAdmin() && (Request::isUrl('/booked-rooms.php') || Request::isUrl('/manage-rooms.php'))) {
             $this->response->redirect('/');
         }
 

@@ -7,27 +7,17 @@ class LoginController extends Controller
 {
     protected function initialize()
     {
-        // if the user id is found
-        // user is logged in
-        if (session('UserID') && Request::isFile('/login.php')) {
-            $this->response->redirect('/');
-            return;
-        }
-
         if (Request::isFile('/logout.php')) {
             $this->logout();
-            $this->response->redirect('/');
+            $this->response->redirect('/login.php');
             return;
         }
 
         // if request method is post
         // and user is not logged in
         // process the credentials
-        if ($this->request->isPost()) {
-            if ($this->login()) {
-                $this->response->redirect('/');
-                return;
-            }
+        if ($this->request->isPost() && $this->login()) {
+            $this->response->redirect('/');
         }
     }
 
@@ -52,6 +42,5 @@ class LoginController extends Controller
         session('UserID', null);
         session('UserType', null);
         session_regenerate_id(true);
-        $this->response->redirect('/');
     }
 }

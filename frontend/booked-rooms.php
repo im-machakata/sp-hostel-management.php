@@ -14,7 +14,7 @@ render_component('head', ['title' => 'View Bookings']);
     <main>
         <div class="container-fluid">
             <?php render_component('header', ['page' => 'View Bookings']); ?>
-            <section class="container-lg px-0">
+            <section class="px-0">
                 <!-- Errors Layouts -->
                 <?php if ($controller->hasErrors() && $controller->request->isPost()) : ?>
                     <div class="alert alert-danger"><?= $controller->getLastError() ?></div>
@@ -31,7 +31,7 @@ render_component('head', ['title' => 'View Bookings']);
                     </div>
                 <?php endif; ?>
 
-                <div class="row mt-2">
+                <div class="row mt-2 justify-content-center">
                     <?php foreach ($rooms as $room) : ?>
                         <div class="col-lg-3 mb-3">
                             <?php render_component('room', $room) ?>

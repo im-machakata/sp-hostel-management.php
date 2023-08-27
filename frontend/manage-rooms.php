@@ -15,7 +15,7 @@ render_component('head', ['title' => 'Manage Rooms']);
         <div class="container-fluid">
             <?php render_component('header', ['page' => 'Manage Rooms']); ?>
             <p class="d-flex justify-content-lg-center mb-5"><a href="#newRoom" data-bs-toggle="modal" data-bs-target="#newRoom" class="btn btn-outline-success col-lg-2" data-id="" data-action="new">Add New Room</a></p>
-            <section class="container-lg px-0">
+            <section class="px-0">
                 <!-- Edit / New Room Modal -->
                 <div class="modal fade" id="newRoom" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="newRoomLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -77,7 +77,7 @@ render_component('head', ['title' => 'Manage Rooms']);
                     </div>
                 <?php endif; ?>
 
-                <div class="row mt-2">
+                <div class="row mt-2 justify-content-center">
                     <?php foreach ($rooms as $room) : ?>
                         <div class="col-lg-3 mb-3">
                             <?php render_component('room', $room) ?>

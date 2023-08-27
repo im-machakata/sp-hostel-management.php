@@ -10,6 +10,12 @@ Hostelia is a small-basic Hostel Management System. I built the system usig my o
 
 ## System Configuration
 
+The first thing you should do is install the `0001.sql` migration file from your phpmyadmin. Neglecting that will cause errors. The file will create all the necessary tables.
+
+### Managing Admin Accounts
+
+As I was working on another project, I did not add a feature to manage the Admin Accounts. You can easily do so though from PHPMyAdmin. Simply change the `is_admin` column to 1 for the user you want to make an admin. If they were already logged in, they may have to log out first to see changes as the status is stored in their session.
+
 By default, I use the common database connection usernames and no password. You can change these in the `config.php` file in the backend folder.
 
 In this file, you can also change the name of the School.
@@ -40,5 +46,8 @@ To make it more interesting & fun, I added the function `render_component($name,
 
 This is where I keep some system functions. You could add as many as you'd like of course.
 
+### Farewell
+
+I hope I left the project at a better position for modifications. I know there's a lot that can be added, modified and removed so take this as a starting point.
 
 [Home-Screenshot]: ./Hostelia%20Home.png

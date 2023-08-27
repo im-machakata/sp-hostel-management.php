@@ -6,11 +6,9 @@ require '../backend/Models/Users.php';
 
 $controller = new RoomsController();
 $rooms = new Rooms();
-$images = new Images();
 $users = new Users();
 
 $user = $users->find(session('UserID'))->getRow();
-$images = $images->getRoomImages($controller->request->get('id'));
 $room = $rooms->find($controller->request->get('id'))->getRow();
 
 render_component('head', ['title' => 'Book Room']);
@@ -20,29 +18,7 @@ render_component('head', ['title' => 'Book Room']);
     <?php render_component('menu'); ?>
     <main>
         <?php if ($room) : ?>
-            <?php if ($images) : ?>
-                <section class="ratio ratio-16x9 room-image border-top border-success input-fix" style="max-height: 70vh;">
-                    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            <?php foreach ($images as $image) : ?>
-                                <div class="carousel-item active">
-                                    <img src="<?= $image['source'] ?>" class="d-block w-100" alt="<?= $image['description'] ?>">
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                </section>
-            <?php else : ?>
-                <section class="ratio ratio-16x9 room-image border-top border-success input-fix" style="max-height: 50vh;background: url(<?= $room['image_url'] ?? '/assets/images/demo.jpg' ?>) no-repeat; background-size: cover; background-position: center;"></section>
-            <?php endif; ?>
+            <section class="ratio ratio-16x9 room-image border-top border-success input-fix" style="max-height: 50vh;background: url(<?= $room['image_url'] ?? '/assets/images/demo.jpg' ?>) no-repeat; background-size: cover; background-position: center;"></section>
             <div class="container-fluid">
                 <section class="px-0 container-lg">
                     <?php render_component('header', ['page' => 'Book']); ?>

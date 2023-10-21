@@ -1,7 +1,6 @@
 <?php
 require "../backend/Controllers/RoomsController.php";
 require '../backend/Models/Rooms.php';
-require '../backend/Models/Images.php';
 require '../backend/Models/Users.php';
 
 $controller = new RoomsController();

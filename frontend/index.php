@@ -6,7 +6,9 @@ $controller = new HomeController();
 $rooms = new Rooms();
 $available_rooms = $rooms->getFreeRooms();
 $all_rooms = $rooms->countAllRooms()['total'];
-$percentage_free = number_format(((count($available_rooms) / $all_rooms) * 100));
+
+// calculate percentage free or set it to 0 when there's no
+$percentage_free = $all_rooms ? number_format(((count($available_rooms) / $all_rooms) * 100)) : 0;
 
 render_component('head', ['title' => 'Home']);
 ?>

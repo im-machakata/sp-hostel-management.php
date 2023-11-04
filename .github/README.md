@@ -1,6 +1,6 @@
 # Hostelia
 
-![A screenshot of the Home page][Home-Screenshot]
+![A screenshot of the Home page][./Home-Screenshot]
 
 Hostelia is a small-basic Hostel Management System. I built the system usig my old PDO Database Connector. The system follows a slightly different MVC Pattern and makes use of Bootstrap CSS Framework.
 
